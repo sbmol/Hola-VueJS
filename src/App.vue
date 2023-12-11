@@ -1,26 +1,65 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+  <h1>Nuestro primer componente</h1>
+  <Car />
+  <h3>ESTO ES API DE OPCIONES</h3>
+  <p>Marca: {{ brand }}</p>
+  <p>Modelo: {{  model }}</p>
+  <p>PRECIO: {{ price }}</p>
+  <p>power: {{ power }}</p>
+  <p>color: 
+    <ul>
+      <li v-for="(color, index) in colors" :key="index">
+        {{ index }}: {{ color }}
+      </li>
+    </ul>
+  </p>
+  <p>Mensaje: {{ message.title }}, {{ message.text }}</p>
+  <h3>Esto es API DE COMPOSICION</h3>
+  <p>Datos de Vehiculo {{ branded }} - {{ model1 }} - {{ engine }} - {{ power1 }} - mensaje: {{ message1.title2 }}</p>
+  
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Car from './components/Car.vue'
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    Car,
+  },
+  // API DE OPCIONES
+  data(){
+    return{
+      brand: "Audi",
+      model: "A4",
+      price: "20000",
+      power: "190",
+      colors: ["azul", "rojo", "verde", "amarillo"],
+      message: {
+        title: "Nuevo en Promocion!",
+        text: "Aprovecha esta oportunidad unica!"
+      }
+    };
+    
+  },
+  // API COMPOSICION
+  setup(){
+    const branded = "Hyundai";
+    const model1 = "Accent";
+    const engine = "1500";
+    const price1 = "45000";
+    const power1 = "240";
+    const message1 = {
+      title2: "hola",
+      text2: "eu",
+    }
+    return{
+      branded, model1, price1, engine, power1, message1
+    }
   }
+
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
